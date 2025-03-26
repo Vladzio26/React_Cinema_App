@@ -5,12 +5,8 @@ import MovieCard from '../MovieCard/MovieCard';
 const API = 'http://localhost:4000/movies';
 
 
-const MovieDetail = () => {
+const MovieDetail = ({onGenreSelect, recomendation}) => {
     const[movie, setMovies] = useState(null);
-    const[recomendation, setRecomendation] = useState(["Fantasy"]);
-
-    const[genre, setGenre] = useState(null);
-    const[searchTerm, setSearchTerm] = useState("");
 
     const{id} = useParams();
 
@@ -29,36 +25,29 @@ const MovieDetail = () => {
             fetchMovie();
         }, [id]);
 
+    const onSelect = (value) => {
+        var valueParam = value;
+        onGenreSelect(valueParam);
+    }
 
 
-        const onSearch = async (title) => {
-            try {
-                const response = await fetch(`${API}?search=${title}&searchBy=genres`);
-                const data = await response.json();
-                console.log(data);
-                setRecomendation(data.data);
-            }
-            catch (error) {
-                console.log(error);
-            }
-    
-        }
-        const onSelect = (value) => {
-            var valueParam = value;
-            onSearch(valueParam);
-        }
     return (
         <div className="movie-detail">
-           <img src={movie ? movie.poster_path : ''} alt={movie ? movie.title : null} />
-            <h1>{movie ? movie.title : null}</h1>
-            <p>{movie ? movie.overview : null}</p>
+            <img src={movie ? movie.poster_path : ''} alt={movie ? movie.title : null} />
+            <h1>
+                {movie ? movie.title : null}
+            </h1>
+            <p>
+                {movie ? movie.overview : null}
+            </p>
             <ul id="menu">
                 {movie ? movie.genres.map((genre) => <li><input type="radio" value={genre} id={genre} onClick={(e) => onSelect(e.target.value)} name="menu-selection" /><label for={genre}>{genre}</label></li>) : null}
             </ul>
-
-        <h1>Recomendations</h1>
+            <h1>
+                Recomendations
+            </h1>
             <div id="recomendations" class='d-flex d-grid gap-2'>
-            {recomendation !== undefined ? recomendation.map((movie) => <MovieCard movie={movie} />) : null}
+                {recomendation !== undefined ? recomendation.map((movie) => <MovieCard movie={movie} />) : null}
             </div>
         </div>
     );

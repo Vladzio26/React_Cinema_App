@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
 const MovieCard = ({movie : {title, poster_path, genres, id}}) => {
     return (
         <div class="d-flex flex-row border border-danger">
