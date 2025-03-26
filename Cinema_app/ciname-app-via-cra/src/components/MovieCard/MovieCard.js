@@ -8,8 +8,7 @@ const MovieCard = ({movie : {title, poster_path, genres, id}}) => {
             <div>
                 <div>{title ? title : null }</div>
                 <img src={poster_path ? poster_path : 'https://placehold.co/400'} alt={title} />
-                <p></p>
-                
+                <div>{genres ? genres.join(", ") : null}</div>
                 <Link to={`/details/${id}`} > More details</Link>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import MovieCard from './MovieCard';
+import MovieCard from '../MovieCard/MovieCard';
 
 
 const API = 'http://localhost:4000/movies?searchBy=title';
@@ -23,8 +23,6 @@ const MovieSearch = () => {
         }
 
     }
-    
-
     return (
         <div>
             <h1>Movie Search</h1>

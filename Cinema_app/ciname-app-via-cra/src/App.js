@@ -1,8 +1,8 @@
 import {  useState } from 'react'
 
-import CounterComponent from './components/CounterComponent.js'
-import MovieSearch from './components/MovieSearch.js'
-import MovieDetail from './components/MovieDetail.js'
+import CounterComponent from './components/CounterComponent/CounterComponent.js'
+import MovieSearch from './components/MovieSearch/MovieSearch.js'
+import MovieDetail from './components/MovieDetail/MovieDetail.js'
 import { Route, Routes, BrowserRouter, NavLink } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 function App() {
@@ -16,20 +16,14 @@ function App() {
     <>
     <BrowserRouter>
       <NavLink to="/search">Go back to search</NavLink>
-  
-      <h1>Count is {count}</h1>
       <div className="card">
-          <CounterComponent text={contextForButton.text1} setCount={setCount} />
-          <CounterComponent text={contextForButton.text2} setCount={setCount} />
+          <CounterComponent text={contextForButton} setCount={setCount} count={count} />
       </div>
       <div className="card">
-       
-        
           <Routes>
             <Route path="/search" element={<MovieSearch/>} />
             <Route path="/details/:id" element={<MovieDetail/>} />
           </Routes>
-       
       </div>
       </BrowserRouter>
     </>
