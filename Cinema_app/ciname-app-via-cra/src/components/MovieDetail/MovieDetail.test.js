@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import MovieDetail from '../MovieDetail/MovieDetail';
 
 
-jest.mock('../MovieCard/MovieCard', () => () => <div>MovieCard</div>);
+jest.mock('../MovieTile/MovieCard', () => () => <div>MovieCard</div>);
 
 describe('MovieDetail', () => {
   const mockMovie = {
