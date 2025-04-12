@@ -1,8 +1,9 @@
 import {  useState } from 'react'
 
-import CounterComponent from './components/CounterComponent/CounterComponent.js'
-import MovieSearch from './components/MovieSearch/MovieSearch.js'
-import MovieDetail from './components/MovieDetail/MovieDetail.js'
+import CounterComponent from '../CounterComponent/CounterComponent.js'
+import MovieSearch from '../MovieSearch/MovieSearch.js'
+import MovieDetail from '../MovieDetail/MovieDetail.js'
+import MovieForm from '../MovieForm/MovieForm.js'
 import { Route, Routes, BrowserRouter, NavLink } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 const API = 'http://localhost:4000/movies';
@@ -32,12 +33,17 @@ function App() {
   return (
     <>
     <BrowserRouter>
-      <NavLink to="/search">Go back to search</NavLink>
+      <div>
+        <NavLink to="/search">Go back to search</NavLink>
+        /_______/
+        <NavLink to="/add-movie">Go to add a new movie</NavLink>
+      </div>
       <div className="card">
           <CounterComponent text={contextForButton} setCount={setCount} count={count} />
       </div>
       <div className="card">
           <Routes>
+            <Route path="/add-movie" element={<MovieForm/>} />
             <Route path="/search" element={<MovieSearch/>} />
             <Route path="/details/:id" element={<MovieDetail onGenreSelect={onGenreSelect} setRecomendation={setRecomendation} recomendation={recomendation} />} />
           </Routes>
